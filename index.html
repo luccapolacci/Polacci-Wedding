@@ -18,11 +18,9 @@ nav { position: sticky; top: 0; z-index: 100; background: var(--cream); border-b
 .nav-links button { background: none; border: none; cursor: pointer; font-family: 'Inter', sans-serif; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-muted); padding: 1rem 1.25rem; border-right: 0.5px solid var(--border); transition: color 0.2s; white-space: nowrap; }
 .nav-links button:hover { color: var(--ink); }
 .nav-links button.active { color: var(--ink); box-shadow: inset 0 -2px 0 var(--accent); }
-.site-wrap { position: relative; overflow: hidden; }
-.section { display: none !important; }
-.section.active { display: block !important; }
-#home { min-height: calc(100vh - 49px); padding: 4rem 2rem; text-align: center; }
-#home.active { display: flex !important; flex-direction: column; align-items: center; justify-content: center; }
+.site-wrap { position: relative; }
+.section { display: none; }
+#home { min-height: calc(100vh - 49px); padding: 4rem 2rem; text-align: center; flex-direction: column; align-items: center; justify-content: center; }
 .eyebrow { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 2rem; }
 .hero-names { font-family: 'Cormorant Garamond', serif; font-size: clamp(52px, 9vw, 88px); font-weight: 300; line-height: 1.05; letter-spacing: 0.01em; color: var(--ink); }
 .hero-names em { font-style: italic; color: var(--accent); }
@@ -112,7 +110,7 @@ footer { border-top: 0.5px solid var(--border); text-align: center; padding: 2re
 </nav>
 
 <div class="site-wrap">
-<section id="home" class="section active">
+<section id="home" class="section">
   <div class="eyebrow">We're getting married</div>
   <div class="hero-names">Lucca <em>&amp;</em> Fiona</div>
   <div class="hero-rule"></div>
@@ -213,14 +211,18 @@ footer { border-top: 0.5px solid var(--border); text-align: center; padding: 2re
 
 <script>
 function show(id,btn){
-  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.section').forEach(s=>{ s.style.display='none'; });
   document.querySelectorAll('.nav-links button').forEach(b=>b.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
+  const target = document.getElementById(id);
+  target.style.display = (id==='home') ? 'flex' : 'block';
   btn.classList.add('active');
   window.scrollTo({top:0,left:0,behavior:'instant'});
-  document.documentElement.scrollTop=0;
-  document.body.scrollTop=0;
 }
+// Init: hide all except home
+document.addEventListener('DOMContentLoaded', function(){
+  document.querySelectorAll('.section').forEach(s=>{ s.style.display='none'; });
+  document.getElementById('home').style.display='flex';
+});
 (function countdown(){const t=new Date('2027-07-17T17:00:00');function tick(){const d=t-new Date();if(d<=0){['cd-d','cd-h','cd-m'].forEach(id=>document.getElementById(id).textContent='0');return;}document.getElementById('cd-d').textContent=Math.floor(d/86400000);document.getElementById('cd-h').textContent=Math.floor((d%86400000)/3600000);document.getElementById('cd-m').textContent=Math.floor((d%3600000)/60000);}tick();setInterval(tick,30000);})();
 function toggleGuest2(r){document.getElementById('guest2-block').style.display=r.value==='2'?'block':'none';}
 function toggleAttending(r){document.getElementById('meal-section').style.display=r.value==='no'?'none':'block';}
