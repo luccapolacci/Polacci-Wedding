@@ -6,6 +6,16 @@
 <title>Lucca &amp; Fiona &middot; July 17, 2027</title>
 <meta name="description" content="Lucca and Fiona are getting married on July 17, 2027 at Deer Park Villa in Fairfax, California. Details, travel, and RSVP." />
 <meta name="theme-color" content="#FAF8F5" />
+<meta name="robots" content="noindex, nofollow" />
+<script>
+  // Passcode gate. Runs before the page paints so content never flashes.
+  window.SITE_PASSCODE = '0419';
+  (function(){
+    var ok = false;
+    try { ok = localStorage.getItem('pw-ok') === window.SITE_PASSCODE; } catch (e) {}
+    if (!ok) document.documentElement.classList.add('locked');
+  })();
+</script>
 
 <!-- Link previews (iMessage, WhatsApp, email, social) -->
 <meta property="og:type" content="website" />
@@ -118,6 +128,20 @@ nav { position: sticky; top: 0; z-index: 100; background: var(--cream); border-b
 .rsvp-success .check-icon { width: 44px; height: 44px; border-radius: 50%; background: var(--accent-light); display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; color: var(--accent); }
 .rsvp-success p { color: var(--ink-soft); margin-top: 0.4rem; font-size: 14px; }
 [hidden] { display: none !important; }
+
+/* Passcode gate */
+#gate { display: none; }
+html.locked body > *:not(#gate) { display: none !important; }
+html.locked #gate { display: flex; min-height: 100vh; min-height: 100svh; align-items: center; justify-content: center; padding: 2rem; text-align: center; }
+.gate-inner { width: 100%; max-width: 340px; }
+.gate-inner .hero-names { font-size: clamp(40px, 9vw, 60px); }
+.gate-inner .hero-rule { margin: 1.5rem auto; }
+.gate-prompt { font-size: 14px; color: var(--ink-soft); margin-bottom: 1.25rem; }
+#gate-input { width: 100%; padding: 12px 14px; border: 0.5px solid var(--border-strong); border-radius: var(--radius); background: var(--warm-white); font-family: 'Inter', sans-serif; font-size: 22px; letter-spacing: 0.5em; text-align: center; color: var(--ink); outline: none; }
+#gate-input:focus { border-color: var(--accent); }
+#gate.has-error #gate-input { border-color: var(--error); }
+#gate-error { font-size: 13px; color: var(--error); margin-top: 0.75rem; min-height: 1.3em; }
+#gate .btn { width: 100%; margin-top: 0.75rem; }
 input, select, textarea, .field { scroll-margin-top: 80px; }
 
 .registry-note { margin-top: 2rem; padding: 1.25rem 1.5rem; background: var(--accent-light); border-radius: 6px; font-size: 14px; color: var(--ink-soft); line-height: 1.6; }
@@ -172,6 +196,17 @@ footer a { color: var(--ink-soft); }
 </style>
 </head>
 <body>
+<div id="gate">
+  <form class="gate-inner" id="gate-form" novalidate>
+    <div class="eyebrow" style="margin-bottom:1.25rem">July 17, 2027</div>
+    <div class="hero-names">Lucca <em>&amp;</em> Fiona</div>
+    <div class="hero-rule"></div>
+    <label class="gate-prompt" for="gate-input" style="display:block">Please enter the passcode from your invitation.</label>
+    <input id="gate-input" type="password" inputmode="numeric" pattern="[0-9]*" maxlength="4" autocomplete="off" aria-describedby="gate-error" />
+    <p id="gate-error" role="alert"></p>
+    <button class="btn btn-primary" type="submit">Enter</button>
+  </form>
+</div>
 <nav aria-label="Main">
   <div class="nav-logo">L &amp; F</div>
   <div class="nav-links">
@@ -304,7 +339,6 @@ footer a { color: var(--ink-soft); }
     <div class="page-eyebrow">Gifts</div>
     <h2 class="page-title">Registry</h2>
     <p style="color:var(--ink-soft);">Your presence at our wedding is the greatest gift of all. Registry details are coming soon.</p>
-    <div class="registry-note">A card or a heartfelt toast is more than enough.</div>
   </div>
 </section>
 
@@ -392,6 +426,28 @@ const RSVP_FORM = {
 const CONTACT_EMAIL = 'LFPolacci@gmail.com';
 
 /* ========================================================= */
+
+// ---- Passcode gate ----
+(function(){
+  const form = document.getElementById('gate-form'), input = document.getElementById('gate-input'), gate = document.getElementById('gate'), err = document.getElementById('gate-error');
+  if (document.documentElement.classList.contains('locked')) input.focus();
+  function attempt(){
+    if (input.value.trim() === window.SITE_PASSCODE) {
+      try { localStorage.setItem('pw-ok', window.SITE_PASSCODE); } catch (e) {}
+      document.documentElement.classList.remove('locked');
+      showPage(location.hash.slice(1));
+    } else {
+      gate.classList.add('has-error');
+      err.textContent = "That passcode isn't right. Please check your invitation.";
+      input.select();
+    }
+  }
+  form.addEventListener('submit', e => { e.preventDefault(); attempt(); });
+  input.addEventListener('input', () => {
+    gate.classList.remove('has-error'); err.textContent = '';
+    if (input.value.length === 4) attempt();
+  });
+})();
 
 // ---- Page navigation (hash-based, so polacciwedding.com/#rsvp links straight to RSVP) ----
 const PAGES = ['home','story','details','rsvp','registry','gallery','faq'];
