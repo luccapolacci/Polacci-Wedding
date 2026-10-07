@@ -263,7 +263,7 @@ footer a { color: var(--ink-soft); }
     <h2 class="page-title">RSVP</h2>
     <div class="rsvp-wrap">
       <form id="rsvp-form" novalidate>
-        <div class="rsvp-note">Please RSVP for the guests named on your invitation. If your party is 3 or more, email us at <a href="mailto:LuccaPolacci@gmail.com">LuccaPolacci@gmail.com</a> and we'll get you sorted.</div>
+        <div class="rsvp-note">Please RSVP for the guests named on your invitation. If your party is 3 or more, email us at <a href="mailto:LFPolacci@gmail.com">LFPolacci@gmail.com</a> and we'll get you sorted.</div>
 
         <div class="field" id="f-name"><label for="g1-name">Your full name</label><input type="text" id="g1-name" placeholder="First and last name" autocomplete="name" /><p class="field-error">Please enter your full name.</p></div>
 
@@ -283,7 +283,7 @@ footer a { color: var(--ink-soft); }
           </div>
         </div>
 
-        <div class="field"><label for="notes" id="notes-label">Dietary needs or a note for us (optional)</label><textarea id="notes" placeholder="Allergies, dietary restrictions, or a message"></textarea></div>
+        <div class="field" id="f-notes"><label for="notes" id="notes-label">Dietary needs or a note for us (optional)</label><textarea id="notes" placeholder="Allergies, dietary restrictions, or a message"></textarea></div>
 
         <button class="btn btn-primary rsvp-btn" type="submit" id="rsvp-submit">Send RSVP</button>
         <p class="form-error" id="form-error" role="alert"></p>
@@ -335,12 +335,12 @@ footer a { color: var(--ink-soft); }
       <div class="faq-item"><button class="faq-btn" type="button">What's the dress code?</button><div class="faq-answer"><div>Formal attire: suits or tuxedos, and floor-length or cocktail dresses. Deer Park Villa is an outdoor estate, so choose shoes that work on grass and garden paths. One firm rule: please don't wear white. Fiona has dibs.</div></div></div>
       <div class="faq-item"><button class="faq-btn" type="button">What will the weather be like?</button><div class="faq-answer"><div>Expect a warm summer day in Marin, and afternoons can get hot. Dinner and the reception will be outdoors, and evenings can cool off once the sun goes down, so dress for the heat and bring a light layer for later.</div></div></div>
       <div class="faq-item"><button class="faq-btn" type="button">Are children welcome?</button><div class="faq-answer"><div>We love your little ones, but our wedding is an adults-only celebration. If your children are invited, they'll be named on your invitation.</div></div></div>
-      <div class="faq-item"><button class="faq-btn" type="button">Can I bring someone?</button><div class="faq-answer"><div>Your invitation names everyone invited, including whether you have a plus-one. If you have questions, email us at <a href="mailto:LuccaPolacci@gmail.com">LuccaPolacci@gmail.com</a>.</div></div></div>
+      <div class="faq-item"><button class="faq-btn" type="button">Can I bring someone?</button><div class="faq-answer"><div>Your invitation names everyone invited, including whether you have a plus-one. If you have questions, email us at <a href="mailto:LFPolacci@gmail.com">LFPolacci@gmail.com</a>.</div></div></div>
       <div class="faq-item"><button class="faq-btn" type="button">When is the RSVP deadline?</button><div class="faq-answer"><div>Please RSVP by June 1, 2027. We need to confirm final headcounts with our venue and caterer, so your timely response means a lot to us.</div></div></div>
       <div class="faq-item"><button class="faq-btn" type="button">Is there parking at the venue?</button><div class="faq-answer"><div>Yes, there's free parking at the venue. If you'd rather not drive home, plan your ride in advance, since rideshare can be scarce in Fairfax late at night. <a href="#details">See travel details</a>.</div></div></div>
       <div class="faq-item"><button class="faq-btn" type="button">Where should I stay?</button><div class="faq-answer"><div>Hotel and room block details will be announced at a later date. We'll update <a href="#details">Details</a> as soon as they're ready.</div></div></div>
       <div class="faq-item"><button class="faq-btn" type="button">I have accessibility needs. Who should I tell?</button><div class="faq-answer"><div>Please add a note to your RSVP or email us. We'll work with the venue to make sure you're comfortable.</div></div></div>
-      <div class="faq-item"><button class="faq-btn" type="button">Who can I contact with questions?</button><div class="faq-answer"><div>Email us at <a href="mailto:LuccaPolacci@gmail.com">LuccaPolacci@gmail.com</a> and one of us will get back to you.</div></div></div>
+      <div class="faq-item"><button class="faq-btn" type="button">Who can I contact with questions?</button><div class="faq-answer"><div>Email us at <a href="mailto:LFPolacci@gmail.com">LFPolacci@gmail.com</a> and one of us will get back to you.</div></div></div>
     </div>
   </div>
 </section>
@@ -356,7 +356,7 @@ footer a { color: var(--ink-soft); }
 
 <footer>
   Lucca &amp; Fiona &nbsp;&middot;&nbsp; July 17, 2027 &nbsp;&middot;&nbsp; Deer Park Villa, Fairfax<br>
-  Questions? <a href="mailto:LuccaPolacci@gmail.com">LuccaPolacci@gmail.com</a>
+  Questions? <a href="mailto:LFPolacci@gmail.com">LFPolacci@gmail.com</a>
 </footer>
 
 <script>
@@ -377,19 +377,19 @@ const EVENT = {
 // fill every question, copy the link, and read each "entry.XXXXXXX" number from it.
 // The form URL ends in /viewform; use the same URL with /formResponse instead.
 const RSVP_FORM = {
-  action: 'https://docs.google.com/forms/d/e/1FAIpQLScEvBoipje5jSUNSCOg0s6-yHiqnAbtlUtWH2RWDSffnrVaMg/formResponse',
+  action: 'https://docs.google.com/forms/d/e/1FAIpQLScy8hpbb0voEVhoxV2XNAH9EKXhL7QYDgh_fZmfdl3DPtKXtQ/formResponse',
   fields: {
-    name:       'entry.1214100166',
-    email:      'entry.15852950',
-    attending:  'entry.2074952404',
-    guests:     'entry.372247915',
-    meal1:      'entry.1863128647',
-    guest2Name: 'entry.1749367633',
-    meal2:      'entry.1049183833',
-    notes:      'entry.1595193906'
+    name:       'entry.315265566',
+    email:      'entry.1991565383',
+    attending:  'entry.1689171522',
+    guests:     'entry.620288969',
+    meal1:      'entry.701157993',
+    guest2Name: 'entry.1022595755',
+    meal2:      'entry.1371270643',
+    notes:      'entry.342472099'
   }
 };
-const CONTACT_EMAIL = 'LuccaPolacci@gmail.com';
+const CONTACT_EMAIL = 'LFPolacci@gmail.com';
 
 /* ========================================================= */
 
@@ -452,6 +452,7 @@ showPage(location.hash.slice(1));
   const form = document.getElementById('rsvp-form');
   const $ = id => document.getElementById(id);
   const yesBlock = $('attending-yes'), g2Block = $('guest2-block');
+  if (!RSVP_FORM.fields.notes) $('f-notes').hidden = true;
 
   form.addEventListener('change', e => {
     if (e.target.name === 'attending') yesBlock.hidden = e.target.value !== 'Yes';
@@ -503,7 +504,7 @@ showPage(location.hash.slice(1));
     data.append(F.meal1, attending ? val('g1-meal') : '');
     data.append(F.guest2Name, two ? val('g2-name') : '');
     data.append(F.meal2, two ? val('g2-meal') : '');
-    data.append(F.notes, val('notes'));
+    if (F.notes) data.append(F.notes, val('notes'));
 
     const btn = $('rsvp-submit');
     btn.disabled = true; btn.textContent = 'Sending…';
